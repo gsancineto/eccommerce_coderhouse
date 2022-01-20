@@ -7,6 +7,7 @@ const styleButton = {
 }
 
 export default function ItemCount(data){
+    //eliminar variables?
     let initialInt = parseInt(data.initial);
     const[count, setCount] = useState(initialInt);
     let countInt = parseInt(count);
@@ -35,9 +36,7 @@ export default function ItemCount(data){
                 <button type="button" className="btn btn-secondary" onClick={sust}>-</button>
                 <button className="btn btn-light">{countInt}</button>
                 <button type="button" className="btn btn-secondary" onClick={sum}>+</button>
-            </div>
-            {/* <div style={styleButton}><button onClick={sust}>-</button> {countInt} <button onClick={sum}>+</button></div> */}
-            
+            </div>          
             <div><button type="button" className="btn btn-primary" onClick={addOn}>Añadir al Carrito</button></div>
         </div>
     )
