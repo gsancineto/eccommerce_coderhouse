@@ -1,26 +1,17 @@
 import { useState } from "react";
 
-const styleButton = {
-    flexWrap: 'wrap', 
-    alignItems: 'flex-start',
-    flexDirection:'row',
-}
-
 export default function ItemCount(data){
-    //eliminar variables?
-    let initialInt = parseInt(data.initial);
-    const[count, setCount] = useState(initialInt);
+    const[count, setCount] = useState(data.initial);
     let countInt = parseInt(count);
-    let stockInt = parseInt(data.stock);
     
     const sum = () => {
-        if(stockInt > 0 && stockInt >= countInt+1){
+        if(countInt < data.stock){
             setCount(countInt+1);
         }
     }
 
     const sust = () => {
-        if(stockInt > 0 && countInt-1 >=0){
+        if(countInt > data.initial){
             setCount(countInt-1);
         }
     }    
