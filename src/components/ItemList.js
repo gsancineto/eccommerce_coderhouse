@@ -2,7 +2,7 @@ import Item from "./Item";
 
 const liStyle = {
     listStyleType: 'none',
-    display:'inline'
+    display:'inline-block'
 } 
 
 export default function ItemList({data}){
