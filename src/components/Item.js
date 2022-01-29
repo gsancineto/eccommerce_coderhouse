@@ -17,7 +17,7 @@ export default function Item({element}){
                         <Card.Text>{element.desc}</Card.Text>
                         <Card.Text>${element.price}</Card.Text>
                         <Card.Text><Link to={`/detalle/${element.id}`}>(Detalles)</Link></Card.Text>
-                        <ItemCount stock={element.stock} initial={element.initial}/>
+                        <ItemCount stock={element.stock} />
                     </Card.Body>
                 </Card>
         </div>

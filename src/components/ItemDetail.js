@@ -18,7 +18,7 @@ export default function ItemDetail({item}){
                                 <h3 className="product-title">{item.title}</h3>
                                 <p className="product-description">{item.descLong}</p>
                                 <h4 className="price">Precio: <span>${item.price}</span></h4>
-                                <ItemCount stock={item.stock} initial={item.initial}/>
+                                <ItemCount stock={item.stock} />
                             </div>
                         </div>
                     </div>
