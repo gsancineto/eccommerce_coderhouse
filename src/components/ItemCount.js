@@ -6,19 +6,25 @@ export default function ItemCount(data){
     const {cartList, AddToCart} = UseCartContext();
     
     const sum = () => {
-        if(count < data.stock){
+        if(count < data.item.stock){
             setCount(count+1);
         }
     }
 
     const sust = () => {
-        if(count > data.initial){
+        if(count > data.item.initial){
             setCount(count-1);
         }
     }    
 
     const addOn = () => {
-        AddToCart(cartList);
+        const item = [];
+        for (let index = 0; index < count; index++) {
+            item.push(data.item);
+        }
+        if(item.length > 0){
+            AddToCart([...cartList, item]);
+        }
         setCount(0);
     }
 
