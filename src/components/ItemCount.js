@@ -18,6 +18,7 @@ export default function ItemCount({item, onAdd}){
     const add = () =>{
         if(count >0){
             onAdd({item, count});
+            setCount(0);
         }
     }
 
