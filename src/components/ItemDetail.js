@@ -1,29 +1,39 @@
-import ItemCount from "./ItemCount"
-export default function ItemDetail({item}){
-console.log(item);
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { UseCartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount";
+import { Card } from "react-bootstrap"
+
+export default function ItemDetail({product}){
+    const[count, setCount] = useState(0);
+    const {cartList, AddToCart} = UseCartContext();
+    function onAdd({item, count}) {
+            console.log(cartList);
+            AddToCart({...cartList, item});
+            console.log(cartList);
+        setCount(0);
+    }
+
     return (
         <div>
-            <div className="container">
-                <div className="card">
-                    <div className="container-fliud">
-                        <div className="wrapper row">
-                            <div className="preview col-md-6">
-                                
-                                <div className="preview-pic tab-content">
-                                <div className="tab-pane active" id="pic-1"><img src={item.img} width="50%" height="50%"/></div>
-                                </div>
-                                
-                            </div>
-                            <div className="details col-md-6">
-                                <h3 className="product-title">{item.title}</h3>
-                                <p className="product-description">{item.descLong}</p>
-                                <h4 className="price">Precio: <span>${item.price}</span></h4>
-                                <ItemCount item={item} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Card.Title>{product.title}</Card.Title>
+            <Card.Img variant="top" src={product.img}/>
+            <Card.Text>{product.desc}</Card.Text>
+            <Card.Text>${product.price}</Card.Text>
+            {
+                count === 0
+                ?
+                <ItemCount item={product} onAdd={onAdd}/>
+                :
+                <>
+                <Link to='/cart'>
+                    <div><button type="button" className="btn btn-primary" >Terminar de Comprar</button></div>
+                </Link>
+                <Link to='/'>
+                    <div><button type="button" className="btn btn-primary" >Seguir Comprando</button></div>
+                </Link>
+                </>
+            }
         </div>
     )
 }

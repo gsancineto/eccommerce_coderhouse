@@ -5,10 +5,10 @@ const liStyle = {
     display:'inline-block'
 } 
 
-export default function ItemList({data}){
+export default function ItemList({item}){
     return(
         <div>
-            {data.map(element => <li key={element.id} style={liStyle}><Item element={element}/></li>)}
+            {item.map(element => <li key={element.id} style={liStyle}><Item element={element}/></li>)}
         </div>
     )
 }
