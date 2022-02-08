@@ -6,8 +6,14 @@ import { Card } from "react-bootstrap"
 
 export default function ItemDetail({product}){
     const {cartList, AddToCart} = UseCartContext();
+    const [count,setCount] = useState(0);
     function onAdd({item, count}) {
         AddToCart({item, count});
+        setCount(count);
+    }
+
+    function resetCount(){
+        setCount(0);
     }
 
     return (
@@ -25,8 +31,8 @@ export default function ItemDetail({product}){
                 <Link to='/cart'>
                     <div><button type="button" className="btn btn-primary" >Terminar de Comprar</button></div>
                 </Link>
-                <Link to='/'>
-                    <div><button type="button" className="btn btn-primary" >Seguir Comprando</button></div>
+                <Link to="/">
+                    <div><button type="button" className="btn btn-primary" onClick={resetCount}>Seguir Comprando</button></div>
                 </Link>
                 </>
             }
