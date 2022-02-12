@@ -29,7 +29,7 @@ export default function ItemDetail({product}){
                 :
                 <>
                 <Link to='/cart'>
-                    <div><button type="button" className="btn btn-primary" >Terminar de Comprar</button></div>
+                    <div><button type="button" className="btn btn-success" >Terminar de Comprar</button></div>
                 </Link>
                 <Link to="/">
                     <div><button type="button" className="btn btn-primary" onClick={resetCount}>Seguir Comprando</button></div>
