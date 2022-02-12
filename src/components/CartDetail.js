@@ -1,6 +1,5 @@
 import { UseCartContext } from "../context/CartContext";
 
-
 export default function CartDetail({Buy}){
     const {cartList, EmptyCart, Total, DeleteFromCart} = UseCartContext();
     return(

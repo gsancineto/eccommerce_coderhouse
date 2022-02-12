@@ -12,13 +12,13 @@ export default function NavBar(){
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Nav.Link ><Link to='/'><LogoWidget/> Mundo Comic</Link></Nav.Link>
+                    <Navbar.Brand className="h5"><Link className="text-light text-decoration-none" to='/'><LogoWidget/> Mundo Comic</Link></Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link ><Link to="/">Home</Link></Nav.Link>
-                        <Nav.Link ><Link to='categoria/marvel'>Marvel</Link></Nav.Link>
-                        <Nav.Link ><Link to='categoria/dc'>DC</Link></Nav.Link>
-                        <Nav.Link ><Link to='categoria/manga'>Manga</Link></Nav.Link>
-                        <Nav.Link ><Link to='/cart'>Carrito {Quantity()===0 ? "" : <CartWidget/> }</Link></Nav.Link>
+                        <Link className="text-light text-decoration-none" style={{ marginRight: 10 }} to="/">Home</Link>
+                        <Link className="text-light text-decoration-none" style={{ marginRight: 10 }} to='categoria/marvel'>Marvel</Link>
+                        <Link className="text-light text-decoration-none" style={{ marginRight: 10 }} to='categoria/dc'>DC</Link>
+                        <Link className="text-light text-decoration-none" style={{ marginRight: 10 }} to='categoria/manga'>Manga</Link>
+                        <Link className="text-light text-decoration-none" style={{ marginRight: 10 }} to='/cart'>Carrito {Quantity()===0 ? "" : <CartWidget/> }</Link>
                     </Nav>
                 </Container>
             </Navbar>

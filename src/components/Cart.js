@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { UseCartContext } from "../context/CartContext"
 import CartDetail from "./CartDetail";
 import { getFirestore, collection, addDoc, where, documentId, writeBatch, getDocs, query } from "firebase/firestore"
+import { useState } from "react";
 
 export default function Cart(){
 const {cartList, Total, EmptyCart} = UseCartContext();
+const [buyed, setBuyed] = useState(false);
 const Buy = async(e) => {
     // e.preventDefault();
 
@@ -44,18 +46,33 @@ const Buy = async(e) => {
         stock:res.data().stock - cartList.find(cart => cart.item.id === res.id).qty
     })));
     batch.commit();
+    setBuyed(true);
     EmptyCart();
 }
     return(
         <div>
             {
                 cartList.length !== 0 ?
-                <CartDetail Buy={Buy}/>
+                <>
+                    <CartDetail Buy={Buy}/>
+                </>
                 :
-                <div className="p-3 mb-2 bg-danger text-white d-flex flex-column">
-                    No hay productos, vaya a comprar algo 
-                    <Link to='/'><button className="btn btn-success">Ir a Comprar</button></Link>
-                </div>
+                    buyed ?
+                        <div className="h3 mb-2 bg-success text-white d-flex flex-column">
+                            <i className="bi bi-bag-check-fill"></i>
+                            <p>
+                                Muchas gracias por su compra!
+                            </p>
+                            <Link to='/'><button className="btn btn-primary">Volver a Comprar</button></Link>
+                        </div>
+                    :
+                        <div className="h3 mb-2 bg-danger text-white d-flex flex-column">
+                            <i className="bi bi-bag-x-fill"></i>
+                            <p>
+                                No hay productos en el carrito, desea comprar algo?
+                            </p>
+                            <Link to='/'><button className="btn btn-success">Ir a Comprar</button></Link>
+                        </div>
             }
         </div>
     )
