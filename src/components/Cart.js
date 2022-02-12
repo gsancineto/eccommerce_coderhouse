@@ -27,11 +27,9 @@ const Buy = async(e) => {
         }
     });
     const db = getFirestore();
-    console.log(order)
     //comprar
     const ordersCollection = collection(db,'orders');
-    await addDoc(ordersCollection, order)
-    .then(resp => console.log(resp));
+    await addDoc(ordersCollection, order);
 
     //actualizar stock
     const itemsCollection = collection(db,'items');
@@ -44,8 +42,7 @@ const Buy = async(e) => {
     await getDocs(queryUpdateStock)
     .then(resp=> resp.docs.forEach(res => batch.update(res.ref,{
         stock:res.data().stock - cartList.find(cart => cart.item.id === res.id).qty
-    })))
-    .finally(console.log('ok'));
+    })));
     batch.commit();
     EmptyCart();
 }
