@@ -9,32 +9,21 @@ export default function ItemDetailContainer(){
     
     useEffect(() =>{
         const db = getFirestore();
-        //esto no anda ni idea
         if(idProducto){
             const itemRef = doc(db,'items',idProducto);
             getDoc(itemRef).then(resp => setItem({id: resp.id, ...resp.data()}));
         }
     },[idProducto])
     return(
-        <div style={style}>
+        <div style={{display:'inline-flex'}}>
             <Item element={item}/>
             <div className="card bg-secondary" >
-                <div className="text-white" style={styleDsc}>
+                <div className="text-white" 
+                    style={{textAlign:'center',width:'300px',margin:'auto'}}
+                >
                     {item.descLong}
                 </div>
             </div>
         </div>
     )
-}
-
-const style = {
-    display: "inline-flex"
-}
-
-const styleDsc ={
-    textAlign: "center",
-    width:"300px",
-    margin:"auto",
-    // color:"white",
-    // backgroundColor: "black"
 }

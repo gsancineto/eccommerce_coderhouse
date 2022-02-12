@@ -5,7 +5,7 @@ import ItemDetail from "./ItemDetail"
 export default function Item({element}){
     return (
         <div>
-            <Card style={cardStyle}>
+            <Card style={{width:'15rem',margin:'0 auto'}}>
                 <Card.Body>
                     <ItemDetail product ={element}/>
                     <Card.Text><Link to={`/detalle/${element.id}`}>(Detalles)</Link></Card.Text>
@@ -13,9 +13,4 @@ export default function Item({element}){
             </Card>
         </div>
     )
-}
-
-const cardStyle = {
-    width: '15rem',
-    margin: '0 auto',
 }

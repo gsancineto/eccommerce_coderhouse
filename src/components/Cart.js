@@ -7,9 +7,7 @@ import { useState } from "react";
 export default function Cart(){
 const {cartList, Total, EmptyCart} = UseCartContext();
 const [buyed, setBuyed] = useState(false);
-const Buy = async(e) => {
-    // e.preventDefault();
-
+const Buy = async() => {
     let order = {}
 
     order.buyer = {name:"juan", email:"j@gmail.com", phone:"44448888"};

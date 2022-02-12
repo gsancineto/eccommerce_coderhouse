@@ -5,7 +5,7 @@ import ItemCount from "./ItemCount";
 import { Card } from "react-bootstrap"
 
 export default function ItemDetail({product}){
-    const {cartList, AddToCart} = UseCartContext();
+    const { AddToCart } = UseCartContext();
     const [count,setCount] = useState(0);
     function onAdd({item, count}) {
         AddToCart({item, count});
