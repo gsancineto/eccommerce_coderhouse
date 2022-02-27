@@ -1,7 +1,9 @@
 import { UseCartContext } from "../context/CartContext";
+import BuyerForm from "./BuyerForm";
+import BuyerGreeting from "./BuyerGreeting";
 
 export default function CartDetail({Buy}){
-    const {cartList, EmptyCart, Total, DeleteFromCart} = UseCartContext();
+    const {cartList, EmptyCart, Total, DeleteFromCart, buyerExists} = UseCartContext();
     return(
         <>
             <div className="card" >
@@ -40,6 +42,7 @@ export default function CartDetail({Buy}){
             <div className="h4 text-light bg-success float-right">
                 {`Total: $${Total()}`}
             </div>
+            {buyerExists ? <BuyerGreeting /> : <BuyerForm />}
             <button onClick={EmptyCart} className="btn btn-danger">Vaciar Carrito</button>
             <button onClick={() => Buy()} className="btn btn-success">Finalizar Compra</button>
         </>

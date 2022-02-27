@@ -5,12 +5,12 @@ import { getFirestore, collection, addDoc, where, documentId, writeBatch, getDoc
 import { useState } from "react";
 
 export default function Cart(){
-const {cartList, Total, EmptyCart} = UseCartContext();
+const {cartList, Total, EmptyCart, buyer} = UseCartContext();
 const [buyed, setBuyed] = useState(false);
 const Buy = async() => {
     let order = {}
 
-    order.buyer = {name:"juan", email:"j@gmail.com", phone:"44448888"};
+    order.buyer = buyer;
     order.total = Total();
 
     order.items = cartList.map(cart => {
@@ -59,7 +59,7 @@ const Buy = async() => {
                         <div className="h3 mb-2 bg-success text-white d-flex flex-column">
                             <i className="bi bi-bag-check-fill"></i>
                             <p>
-                                Muchas gracias por su compra!
+                                Muchas gracias por su compra, {buyer.name}!
                             </p>
                             <Link to='/'><button className="btn btn-primary">Volver a Comprar</button></Link>
                         </div>

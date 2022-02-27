@@ -10,7 +10,7 @@ export default function ItemCount({item, onAdd}){
     }
 
     const sust = () => {
-        if(count > item.initial){
+        if(count > 0){
             setCount(count-1);
         }
     }

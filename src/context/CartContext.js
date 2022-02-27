@@ -8,6 +8,8 @@ export function UseCartContext(){
 
 function CartContextProvider({children}){
     const [cartList, setCartList] = useState([]);
+    const [buyer, setBuyer] = useState({});
+    const [buyerExists, setBuyerExists] = useState(false);
 
     function AddToCart({item, count:qty}){
         if(cartList.some(l=> (l.item.id === item.id))){
@@ -40,6 +42,13 @@ function CartContextProvider({children}){
         setCartList(cartList.filter(prod => prod.item.id !== id));
     }
 
+    const SetBuyerData = (buyer) =>{
+        if(buyer !== null){
+            setBuyerExists(true);
+            setBuyer(buyer);
+        }
+    }
+
     return(
         <cartContext.Provider value={{
             cartList,
@@ -47,7 +56,10 @@ function CartContextProvider({children}){
             EmptyCart,
             Total,
             DeleteFromCart,
-            Quantity
+            Quantity,
+            SetBuyerData,
+            buyer,
+            buyerExists
         }}>
             {children}
         </cartContext.Provider>
