@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Cart(){
 const {cartList, Total, EmptyCart, buyer} = UseCartContext();
 const [buyed, setBuyed] = useState(false);
+const [id, setId] = useState('');
 const Buy = async() => {
     let order = {}
 
@@ -29,7 +30,8 @@ const Buy = async() => {
     const db = getFirestore();
     //comprar
     const ordersCollection = collection(db,'orders');
-    await addDoc(ordersCollection, order);
+    await addDoc(ordersCollection, order)
+            .then(resp => setId(resp.id));
 
     //actualizar stock
     const itemsCollection = collection(db,'items');
@@ -43,9 +45,9 @@ const Buy = async() => {
     .then(resp=> resp.docs.forEach(res => batch.update(res.ref,{
         stock:res.data().stock - cartList.find(cart => cart.item.id === res.id).qty
     })));
-    batch.commit();
     setBuyed(true);
     EmptyCart();
+    batch.commit();
 }
     return(
         <div>
@@ -58,9 +60,10 @@ const Buy = async() => {
                     buyed ?
                         <div className="h3 mb-2 bg-success text-white d-flex flex-column">
                             <i className="bi bi-bag-check-fill"></i>
-                            <p>
-                                Muchas gracias por su compra, {buyer.name}!
-                            </p>
+                            <span>
+                                Muchas gracias por su compra, {buyer.name}!<br/>
+                                El id de seguimiento de su orden es {id}
+                            </span>
                             <Link to='/'><button className="btn btn-primary">Volver a Comprar</button></Link>
                         </div>
                     :

@@ -15,8 +15,8 @@ function App() {
           <Routes>
             <Route exact path ='/' element={<ItemListContainer/>}/>
             <Route exact path='/cart' element={<Cart/>}/>
-            <Route exact path='/categoria/:idCategoria' element={<ItemListContainer/>}/>
-            <Route exact path='/detalle/:idProducto' element={<ItemDetailContainer/>}/>
+            <Route exact path='/categoria/:idCategory' element={<ItemListContainer/>}/>
+            <Route exact path='/detalle/:idProduct' element={<ItemDetailContainer/>}/>
           </Routes>
         </div>
       </CartContextProvider>
